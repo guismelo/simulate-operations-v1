@@ -1,0 +1,83 @@
+{
+    "name": "epicsweb/api-epics-v2",
+    "type": "project",
+    "description": "second version - api epics",
+    "keywords": [
+        "api",
+        "epics",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2.0",
+        "firebase/php-jwt": "^6.8",
+        "fruitcake/laravel-cors": "^2.0.5",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^9.0",
+        "laravel/sanctum": "^2.14.1",
+        "laravel/tinker": "^2.7",
+        "matmper/php-discord-webhook": "^1.0",
+        "psr/log": "^1.0"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9.1",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.1",
+        "pestphp/pest": "^1.23",
+        "phpunit/phpunit": "^9.5.10",
+        "reliese/laravel": "^0.0.19",
+        "spatie/laravel-ignition": "^1.0",
+        "squizlabs/php_codesniffer": "^3.6"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/Helpers/AutoLoad.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        },
+        "classmap": [
+            "database/seeds",
+            "database/factories"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "phpcs": [
+            "@php vendor/bin/phpcs -d memory_limit=512M"
+        ],
+        "phpcbf": [
+            "@php vendor/bin/phpcbf -d memory_limit=1024M"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    }
+}
